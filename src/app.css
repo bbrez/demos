@@ -1,3 +1,37 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+::view-transition-old(root) {
+  transform: translateX(0);
+  animation: slide-out 0.4s forwards ease-out;
+}
+
+::view-transition-new(root) {
+  transform: translateX(100%);
+  animation: slide-in 0.4s forwards ease-out;
+}
+
+@keyframes slide-out {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  ::view-transition-new(*),
+  ::view-transition-old(*),
+  ::view-transition-group(*) {
+    animation: none !important;
+  }
+}

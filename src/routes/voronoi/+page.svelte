@@ -1,8 +1,8 @@
 <script lang="ts">
 	let canvas: HTMLCanvasElement;
 
-	const height = 500;
-	const width = 500;
+	const height = 400;
+	const width = 400;
 
 	let numberOfPoints = $state(20);
 	let saturation = $state(60);
@@ -19,10 +19,10 @@
 		});
 	}
 
-  function generateColor(index: number, total: number) {
-    const hue = (index / total) * 365;
-    return hsvToRgb(hue, saturation / 100, value / 100);
-  }
+	function generateColor(index: number, total: number) {
+		const hue = (index / total) * 365;
+		return hsvToRgb(hue, saturation / 100, value / 100);
+	}
 
 	function generatePoints(count: number) {
 		return sortByDistanceFromCenter(
@@ -70,13 +70,6 @@
 		// Clear the canvas
 		ctx.clearRect(0, 0, width, height);
 
-		// Display the points
-		points.forEach(([x, y]) => {
-			ctx.beginPath();
-			ctx.arc(x, y, 2, 0, 2 * Math.PI);
-			ctx.fill();
-		});
-
 		// Create the voronoi diagram
 		const imageData = ctx.createImageData(width, height);
 		const data = imageData.data;
@@ -86,7 +79,6 @@
 				const distances = points.map(([px, py]) => Math.hypot(px - x, py - y));
 				const minDistance = Math.min(...distances);
 				const minIndex = distances.indexOf(minDistance);
-				// const [r, g, b] = hsvToRgb((minIndex / points.length) * 360, saturation / 100, value / 100);
 				const [r, g, b] = generateColor(minIndex, points.length);
 				const index = (y * width + x) * 4;
 				data[index] = r;
@@ -97,6 +89,13 @@
 		}
 
 		ctx.putImageData(imageData, 0, 0);
+
+		// Display the points
+		points.forEach(([x, y]) => {
+			ctx.beginPath();
+			ctx.arc(x, y, 2, 0, 2 * Math.PI);
+			ctx.fill();
+		});
 	});
 </script>
 
