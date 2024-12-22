@@ -19,6 +19,11 @@
 		});
 	}
 
+  function generateColor(index: number, total: number) {
+    const hue = (index / total) * 365;
+    return hsvToRgb(hue, saturation / 100, value / 100);
+  }
+
 	function generatePoints(count: number) {
 		return sortByDistanceFromCenter(
 			Array.from({ length: count }, () => [Math.random() * width, Math.random() * height])
@@ -81,7 +86,8 @@
 				const distances = points.map(([px, py]) => Math.hypot(px - x, py - y));
 				const minDistance = Math.min(...distances);
 				const minIndex = distances.indexOf(minDistance);
-				const [r, g, b] = hsvToRgb((minIndex / points.length) * 360, saturation / 100, value / 100);
+				// const [r, g, b] = hsvToRgb((minIndex / points.length) * 360, saturation / 100, value / 100);
+				const [r, g, b] = generateColor(minIndex, points.length);
 				const index = (y * width + x) * 4;
 				data[index] = r;
 				data[index + 1] = g;
