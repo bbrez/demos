@@ -4,19 +4,25 @@
 	const height = 500;
 	const width = 500;
 
-	let numberOfPoints = $state(10);
+	let numberOfPoints = $state(20);
 	let saturation = $state(60);
 	let value = $state(80);
 
 	let points = $derived(generatePoints(numberOfPoints));
 
-	function generatePoints(count: number) {
-		return Array.from({ length: count }, () => [Math.random() * width, Math.random() * height]);
+	function sortByDistanceFromCenter(points: number[][]) {
+		const center = [width / 2, height / 2];
+		return points.sort((a, b) => {
+			const distanceA = Math.hypot(a[0] - center[0], a[1] - center[1]);
+			const distanceB = Math.hypot(b[0] - center[0], b[1] - center[1]);
+			return distanceA - distanceB;
+		});
 	}
 
-	function generateColor(index: number, total: number) {
-		const hue = (index / total) * 360;
-		return `rgb(${hsvToRgb(hue, saturation / 100, value / 100).join(',')})`;
+	function generatePoints(count: number) {
+		return sortByDistanceFromCenter(
+			Array.from({ length: count }, () => [Math.random() * width, Math.random() * height])
+		);
 	}
 
 	function hsvToRgb(hue: number, saturation: number, value: number) {
@@ -88,45 +94,70 @@
 	});
 </script>
 
-<div class="container mx-auto grid min-h-svh place-items-center">
+<div class="container mx-auto grid min-h-svh place-items-center font-serif">
 	<div>
-		<h1>Voronoi Diagram</h1>
-		<div class="flex flex-col">
-			<canvas class="border border-black" {height} {width} bind:this={canvas}></canvas>
-			<div class="flex flex-row justify-between gap-3">
-				<div>
-					<label class="block" for="points">Number of points</label>
-					<input
-						id="points"
-						type="number"
-						min="1"
-						max="30"
-						bind:value={numberOfPoints}
-						class="rounded border px-2 py-1"
-					/>
+		<h1 class="text-2xl font-semibold">Voronoi Diagram</h1>
+		<div class="flex flex-row gap-2">
+			<div class="flex flex-col">
+				<canvas class="border border-black" {height} {width} bind:this={canvas}></canvas>
+				<div class="flex flex-row justify-between gap-3">
+					<div>
+						<label class="block" for="points">Number of points</label>
+						<input
+							id="points"
+							type="number"
+							min="1"
+							max="30"
+							bind:value={numberOfPoints}
+							class="rounded border px-2 py-1"
+						/>
+					</div>
+					<div>
+						<label class="block" for="saturation">Saturation</label>
+						<input
+							id="saturation"
+							type="number"
+							min="0"
+							max="100"
+							bind:value={saturation}
+							class="rounded border px-2 py-1"
+						/>
+					</div>
+					<div>
+						<label class="block" for="lightness">Value</label>
+						<input
+							id="lightness"
+							type="number"
+							min="0"
+							max="100"
+							bind:value
+							class="rounded border px-2 py-1"
+						/>
+					</div>
+					<div class="grid">
+						<button
+							class="self-end rounded border px-2 py-1"
+							onclick={() => {
+								numberOfPoints = numberOfPoints + 1;
+								numberOfPoints = numberOfPoints - 1;
+							}}
+						>
+							Generate
+						</button>
+					</div>
 				</div>
-				<div>
-					<label class="block" for="saturation">Saturation</label>
-					<input
-						id="saturation"
-						type="number"
-						min="0"
-						max="100"
-						bind:value={saturation}
-						class="rounded border px-2 py-1"
-					/>
-				</div>
-				<div>
-					<label class="block" for="lightness">Value</label>
-					<input
-						id="lightness"
-						type="number"
-						min="0"
-						max="100"
-						bind:value
-						class="rounded border px-2 py-1"
-					/>
-				</div>
+			</div>
+			<div class="max-w-prose text-justify">
+				<p class="mb-3 indent-4">
+					A Voronoi diagram is a partitioning of a plane into regions based on the distance to a
+					specific set of points. It is named after Georgy Voronoy, and is also known as a Voronoi
+					tessellation, a Voronoi decomposition, a Voronoi partition, or a Dirichlet tessellation.
+				</p>
+				<p class="mb-3 indent-4">
+					In this example, we generate a set of random points and calculate the distance from each
+					pixel to the closest point. We then color each pixel based on the color of the closest
+					point.
+				</p>
 			</div>
 		</div>
 	</div>
