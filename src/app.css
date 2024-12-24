@@ -4,12 +4,12 @@
 
 ::view-transition-old(root) {
   transform: translateX(0);
-  animation: slide-out 0.4s forwards ease-out;
+  animation: slide-out 0.4s forwards;
 }
 
 ::view-transition-new(root) {
   transform: translateX(100%);
-  animation: slide-in 0.4s forwards ease-out;
+  animation: slide-in 0.4s forwards;
 }
 
 @keyframes slide-out {
@@ -29,6 +29,7 @@
 }
 
 @media (prefers-reduced-motion) {
+
   ::view-transition-new(*),
   ::view-transition-old(*),
   ::view-transition-group(*) {

@@ -23,4 +23,17 @@
 	});
 </script>
 
-{@render children()}
+<header class="w-full bg-neutral-200 py-1">
+	<nav class="container mx-auto">
+		<a href="/">Home</a>
+	</nav>
+</header>
+<main>
+	{@render children()}
+</main>
+
+<style>
+	header {
+		view-transition-name: header;
+	}
+</style>
