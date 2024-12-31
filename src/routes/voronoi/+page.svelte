@@ -116,21 +116,21 @@
 		<div class="flex flex-row gap-6">
 			<div class="max-w-[90ch] text-justify">
 				<section class="mb-6">
-					<h2 id="intro" class="group relative font-semibold text-2xl">
+					<h2 id="intro" class="group relative text-2xl font-semibold">
 						<Link class="invisible absolute -left-5 top-1/4 inline group-hover:visible" size={12} />
 						<a href="#intro" class="group-hover:underline"> Introduction </a>
 					</h2>
 					<p>Todo</p>
 				</section>
 				<section class="mb-6">
-					<h2 id="history" class="group relative font-semibold text-2xl">
+					<h2 id="history" class="group relative text-2xl font-semibold">
 						<Link class="invisible absolute -left-5 top-1/4 inline group-hover:visible" size={12} />
 						<a href="#history" class="group-hover:underline"> History </a>
 					</h2>
 					<p>Todo</p>
 				</section>
 				<section class="mb-6">
-					<h2 id="generation" class="group relative font-semibold text-2xl">
+					<h2 id="generation" class="group relative text-2xl font-semibold">
 						<Link class="invisible absolute -left-5 top-1/4 inline group-hover:visible" size={12} />
 						<a href="#generation" class="group-hover:underline"> Generation </a>
 					</h2>
@@ -176,31 +176,29 @@
 						by a defined amount. That would create an animation of the influence area of each point
 						growing around its seed.
 					</p>
-          <p class="mb-3 indent-4">
-
-          </p>
+					<p class="mb-3 indent-4"></p>
 				</section>
-        <section class="mb-6">
-					<h2 id="history" class="group relative font-semibold text-2xl">
+				<section class="mb-6">
+					<h2 id="history" class="group relative text-2xl font-semibold">
 						<Link class="invisible absolute -left-5 top-1/4 inline group-hover:visible" size={12} />
 						<a href="#applications" class="group-hover:underline"> Applications </a>
 					</h2>
 					<p>Todo</p>
-        </section>
-        <section class="mb-6">
-					<h2 id="art" class="group relative font-semibold text-2xl">
+				</section>
+				<section class="mb-6">
+					<h2 id="art" class="group relative text-2xl font-semibold">
 						<Link class="invisible absolute -left-5 top-1/4 inline group-hover:visible" size={12} />
 						<a href="#art" class="group-hover:underline"> As a form of art </a>
 					</h2>
 					<p>Todo</p>
-        </section>
-        <section class="mb-6">
-					<h2 id="history" class="group relative font-semibold text-2xl">
+				</section>
+				<section class="mb-6">
+					<h2 id="history" class="group relative text-2xl font-semibold">
 						<Link class="invisible absolute -left-5 top-1/4 inline group-hover:visible" size={12} />
 						<a href="#sources" class="group-hover:underline"> Sources </a>
 					</h2>
 					<p>Todo</p>
-        </section>
+				</section>
 			</div>
 			<div class="relative">
 				<div class="sticky top-2 flex flex-col">

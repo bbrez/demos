@@ -24,8 +24,9 @@
 </script>
 
 <header class="w-full bg-neutral-200 py-1">
-	<nav class="container mx-auto">
-		<a href="/">Home</a>
+	<nav class="mx-4">
+		<a href="/" class="border-r last:border-none border-neutral-700 px-2 hover:underline">Home</a>
+		<a href="/" class="border-r last:border-none border-neutral-700 px-2 hover:underline">Test</a>
 	</nav>
 </header>
 <main>
